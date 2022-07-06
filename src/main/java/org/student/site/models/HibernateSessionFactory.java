@@ -7,14 +7,14 @@ import org.hibernate.cfg.Configuration;
 public class HibernateSessionFactory {
     private static SessionFactory sessionFactory;
 
-    private HibernateSessionFactory() {}
-
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration().configure();
                 //TODO add AnnotatedClasses
-                //configuration.addAnnotatedClass();
+                configuration.addAnnotatedClass(Student.class);
+                configuration.addAnnotatedClass(Group.class);
+                configuration.addAnnotatedClass(Tutor.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
 
