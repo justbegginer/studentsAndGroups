@@ -8,4 +8,10 @@ import java.util.List;
 
 @Component
 public class TutorDao {
+    public List<Tutor> getAllTutors(){
+        return HibernateSessionFactory.getSessionFactory().openSession().createQuery("FROM Tutor").list();
+    }
+    public Tutor getTutorById(int id){
+        return HibernateSessionFactory.getSessionFactory().openSession().get(Tutor.class, id);
+    }
 }
