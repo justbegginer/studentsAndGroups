@@ -33,4 +33,14 @@ public class TutorController {
         tutorDao.addTutor(tutor);
         return "redirect:/tutors";
     }
+    @GetMapping("{id}/delete")
+    public String pageToDelete(@PathVariable("id") int id, Model model){
+        model.addAttribute("tutor", tutorDao.getTutorById(id));
+        return "tutor/delete";
+    }
+    @DeleteMapping("{id}")
+    public String deleteTutorFromDB(@PathVariable("id") int id){
+        tutorDao.deleteTutor(id);
+        return "redirect:/tutors";
+    }
 }
