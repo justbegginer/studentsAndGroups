@@ -23,4 +23,11 @@ public class StudentDao {
         transaction.commit();
         session.close();
     }
+    public void deleteStudent(int id){
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(getStudentById(id));
+        transaction.commit();
+        session.close();
+    }
 }

@@ -33,4 +33,14 @@ public class StudentController {
         studentDao.addStudent(student);
         return "redirect:/students";
     }
+    @GetMapping("{id}/delete")
+    public String pageToDelete(@PathVariable("id") int id, Model model){
+        model.addAttribute("student", studentDao.getStudentById(id));
+        return "student/delete";
+    }
+    @DeleteMapping("{id}")
+    public String deleteStudentFromDB(@PathVariable("id") int id){
+        studentDao.deleteStudent(id);
+        return "redirect:/students";
+    }
 }
