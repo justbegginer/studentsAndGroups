@@ -24,4 +24,11 @@ public class GroupDao {
         transaction.commit();
         session.close();
     }
+    public void deleteGroup(int id){
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(getGroupById(id));
+        transaction.commit();
+        session.close();
+    }
 }

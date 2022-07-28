@@ -32,4 +32,14 @@ public class GroupController {
         groupDao.addGroup(group);
         return "redirect:/groups";
     }
+    @GetMapping("{id}/delete")
+    public String pageToDelete(@PathVariable("id") int id, Model model){
+        model.addAttribute("group", groupDao.getGroupById(id));
+        return "group/delete";
+    }
+    @DeleteMapping("{id}")
+    public String deleteGroupFromDB(@PathVariable("id") int id){
+        groupDao.deleteGroup(id);
+        return "redirect:/groups";
+    }
 }
