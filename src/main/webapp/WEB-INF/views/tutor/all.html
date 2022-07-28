@@ -10,6 +10,10 @@
         <a th:href="@{/tutors/{id}(id=${tutor.getId()})}" th:text="${tutor.getName()} +
         ' '+ ${tutor.getSurname()} +' - ' + ${tutor.getQualification()}">user</a>
     </div>
+    <br>
+    <form action="/tutors/new">
+        <input style="color:blue" type="submit" value="ADD">
+    </form>
 </center>
 </body>
 </html>

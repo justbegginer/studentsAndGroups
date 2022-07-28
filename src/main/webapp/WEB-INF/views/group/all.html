@@ -9,6 +9,10 @@
     <div th:each="group : ${groups}">
         <a th:href="@{/groups/{id}(id=${group.getId()})}" th:text="${group.getId()} + 'Group number - ' + ${group.getId()}">user</a>
     </div>
+    <br>
+    <form action="/groups/new">
+        <input style="color:blue" type="submit" value="ADD">
+    </form>
 </center>
 </body>
 </html>
