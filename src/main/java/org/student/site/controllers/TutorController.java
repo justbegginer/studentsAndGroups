@@ -3,10 +3,10 @@ package org.student.site.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.student.site.dao.TutorDao;
+import org.student.site.models.Student;
+import org.student.site.models.Tutor;
 
 @Controller
 @RequestMapping("/tutors")
@@ -22,5 +22,15 @@ public class TutorController {
     public String getTutorById(@PathVariable("id") int id, Model model){
         model.addAttribute("tutor", tutorDao.getTutorById(id));
         return "tutor/getTutor";
+    }
+    @GetMapping("/new")
+    public String newTutor(Model model){
+        model.addAttribute("tutor", new Tutor());
+        return "tutor/add";
+    }
+    @PostMapping()
+    public String addNewTutorToDB(@ModelAttribute("tutor") Tutor tutor){
+        tutorDao.addTutor(tutor);
+        return "redirect:/tutors";
     }
 }
