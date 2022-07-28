@@ -9,6 +9,9 @@
     <h2 th:text="${student.getName()}"></h2>
     <h1 th:text="${student.getSurname()}"></h1>
     <a th:href="@{/groups/{id}(id=${student.getGroupNumber()})}" th:text="'Group number : '+ ${student.getGroupNumber()}">Edit</a>
+    <form th:action="@{/students/{id}/delete(id=${student.id})}">
+        <input style="color:orangered" type="submit" value="DELETE">
+    </form>
 </center>
 </body>
 </html>

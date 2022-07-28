@@ -8,6 +8,9 @@
 <center>
     <h2 th:text="${tutor.getName()} + ' '+ ${tutor.getSurname()}"></h2>
     <h1 th:text="${tutor.getQualification()}"></h1>
+    <form th:action="@{/tutors/{id}/delete(id=${tutor.id})}">
+        <input style="color:orangered" type="submit" value="DELETE">
+    </form>
 </center>
 </body>
 </html>

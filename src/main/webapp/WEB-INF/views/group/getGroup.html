@@ -10,6 +10,9 @@
     <h2>
         <a th:href="@{/tutors/{id}(id=${group.getTutorId()})}" th:text="'Tutor link'">Edit</a>
     </h2>
+    <form th:action="@{/groups/{id}/delete(id=${group.id})}">
+        <input style="color:orangered" type="submit" value="DELETE">
+    </form>
 </center>
 </body>
 </html>
