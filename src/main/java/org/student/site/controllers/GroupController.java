@@ -3,10 +3,9 @@ package org.student.site.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.student.site.dao.GroupDao;
+import org.student.site.models.Group;
 
 @Controller
 @RequestMapping("/groups")
@@ -22,5 +21,15 @@ public class GroupController {
     public String getGroupById(@PathVariable("id") int id, Model model){
         model.addAttribute("group", groupDao.getGroupById(id));
         return "group/getGroup";
+    }
+    @GetMapping("/new")
+    public String newGroup(Model model){
+        model.addAttribute("group", new Group());
+        return "group/add";
+    }
+    @PostMapping()
+    public String addNewGroupToDB(@ModelAttribute("group") Group group){
+        groupDao.addGroup(group);
+        return "redirect:/groups";
     }
 }
