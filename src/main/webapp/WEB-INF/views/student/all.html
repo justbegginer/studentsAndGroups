@@ -9,6 +9,9 @@
     <div th:each="student : ${students}">
         <a th:href="@{/students/{id}(id=${student.getId()})}" th:text="${student.getName()} +
         ' '+ ${student.getSurname()}">user</a>
+        <form th:action="@{/students/{id}/delete(id=${student.id})}">
+            <input style="color:orangered" type="submit" value="DELETE">
+        </form>
     </div>
     <br>
     <form action="/students/new">
