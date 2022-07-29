@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/groups/{id}(id=${group.id})}" th:object="${group}">
+    <label for="tutorId" >Write new tutor ID</label>
+    <input type="text" id="tutorId" th:field="*{tutorId}"/>
+    <input type="submit" value="UPDATE">
+</form>
+</body>
+</html>
