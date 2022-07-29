@@ -48,8 +48,9 @@ public class GroupController {
         return "group/update";
     }
     @PatchMapping("{id}")
-    public String updateGroup(@ModelAttribute("group") Group group){
+    public String updateGroup(@ModelAttribute("group") Group group, Model model){
         groupDao.updateGroup(group);
+        model.addAttribute("groups", groupDao.getAllGroups());
         return "group/all";
     }
 }

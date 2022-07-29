@@ -49,8 +49,9 @@ public class StudentController {
         return "student/update";
     }
     @PatchMapping("{id}")
-    public String updateGroup(@ModelAttribute("student") Student student){
+    public String updateGroup(@ModelAttribute("student") Student student, Model model){
         studentDao.updateStudent(student);
+        model.addAttribute("students", studentDao.getAllStudents());
         return "student/all";
     }
 }

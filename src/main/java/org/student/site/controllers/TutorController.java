@@ -50,8 +50,9 @@ public class TutorController {
         return "tutor/update";
     }
     @PatchMapping("{id}")
-    public String updateGroup(@ModelAttribute("tutor") Tutor tutor){
+    public String updateGroup(@ModelAttribute("tutor") Tutor tutor, Model model){
         tutorDao.updateTutor(tutor);
+        model.addAttribute("tutors", tutorDao.getAllTutors());
         return "tutor/all";
     }
 }
