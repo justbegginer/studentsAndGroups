@@ -8,9 +8,12 @@
 <center>
     <div th:each="group : ${groups}">
         <a th:href="@{/groups/{id}(id=${group.getId()})}"
-           th:text="${group.getId()} + 'Group number - ' + ${group.getId()}">user</a>
+           th:text="'Group number - ' + ${group.getId()}">user</a>
         <form th:action="@{/groups/{id}/delete(id=${group.getId()})}">
             <input style="color:orangered" type="submit" value="DELETE">
+        </form>
+        <form th:action="@{/groups/{id}/update(id=${group.getId()})}">
+            <input style="color:orange" type="submit" value="UPDATE">
         </form>
     </div>
     <br>

@@ -12,6 +12,9 @@
         <form th:action="@{/students/{id}/delete(id=${student.id})}">
             <input style="color:orangered" type="submit" value="DELETE">
         </form>
+        <form th:action="@{/students/{id}/update(id=${student.getId()})}">
+            <input style="color:orange" type="submit" value="UPDATE">
+        </form>
     </div>
     <br>
     <form action="/students/new">
