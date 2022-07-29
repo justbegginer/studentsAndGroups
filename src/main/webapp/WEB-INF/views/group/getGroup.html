@@ -13,6 +13,9 @@
     <form th:action="@{/groups/{id}/delete(id=${group.id})}">
         <input style="color:orangered" type="submit" value="DELETE">
     </form>
+    <form th:action="@{/groups/{id}/update(id=${group.getId()})}">
+        <input style="color:orange" type="submit" value="UPDATE">
+    </form>
 </center>
 </body>
 </html>
