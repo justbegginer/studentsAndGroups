@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.student.site.dao.TutorDao;
+import org.student.site.models.Group;
 import org.student.site.models.Student;
 import org.student.site.models.Tutor;
 
@@ -42,5 +43,15 @@ public class TutorController {
     public String deleteTutorFromDB(@PathVariable("id") int id){
         tutorDao.deleteTutor(id);
         return "redirect:/tutors";
+    }
+    @GetMapping("{id}/update")
+    public String pageToUpdate(@PathVariable("id") int id,Model model){
+        model.addAttribute("tutor", tutorDao.getTutorById(id));
+        return "tutor/update";
+    }
+    @PatchMapping("{id}")
+    public String updateGroup(@ModelAttribute("tutor") Tutor tutor){
+        tutorDao.updateTutor(tutor);
+        return "tutor/all";
     }
 }

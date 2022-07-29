@@ -31,4 +31,11 @@ public class TutorDao {
         transaction.commit();
         session.close();
     }
+    public void updateTutor(Tutor tutor){
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(tutor);
+        transaction.commit();
+        session.close();
+    }
 }
