@@ -43,4 +43,14 @@ public class StudentController {
         studentDao.deleteStudent(id);
         return "redirect:/students";
     }
+    @GetMapping("{id}/update")
+    public String pageToUpdate(@PathVariable("id") int id,Model model){
+        model.addAttribute("student", studentDao.getStudentById(id));
+        return "student/update";
+    }
+    @PatchMapping("{id}")
+    public String updateGroup(@ModelAttribute("student") Student student){
+        studentDao.updateStudent(student);
+        return "student/all";
+    }
 }

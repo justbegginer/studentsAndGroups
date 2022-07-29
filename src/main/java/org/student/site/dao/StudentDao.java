@@ -30,4 +30,11 @@ public class StudentDao {
         transaction.commit();
         session.close();
     }
+    public void updateStudent(Student student){
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(student);
+        transaction.commit();
+        session.close();
+    }
 }
