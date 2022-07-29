@@ -42,4 +42,14 @@ public class GroupController {
         groupDao.deleteGroup(id);
         return "redirect:/groups";
     }
+    @GetMapping("{id}/update")
+    public String pageToUpdate(@PathVariable("id") int id,Model model){
+        model.addAttribute("group", groupDao.getGroupById(id));
+        return "group/update";
+    }
+    @PatchMapping("{id}")
+    public String updateGroup(@ModelAttribute("group") Group group){
+        groupDao.updateGroup(group);
+        return "group/all";
+    }
 }

@@ -31,4 +31,11 @@ public class GroupDao {
         transaction.commit();
         session.close();
     }
+    public void updateGroup(Group group){
+        Session session = HibernateSessionFactory.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(group);
+        transaction.commit();
+        session.close();
+    }
 }
