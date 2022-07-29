@@ -7,9 +7,11 @@
 <body>
 <center>
     <h1 th:text="'group number -'+${group.getId()}"></h1>
+    <hr>
     <h2>
         <a th:href="@{/tutors/{id}(id=${group.getTutorId()})}" th:text="'Tutor link'">Edit</a>
     </h2>
+    <hr>
     <form th:action="@{/groups/{id}/delete(id=${group.id})}">
         <input style="color:orangered" type="submit" value="DELETE">
     </form>
