@@ -13,7 +13,6 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 
-
 @Configuration
 @ComponentScan("org.student.site")
 @EnableWebMvc

@@ -10,27 +10,31 @@ import java.util.List;
 
 @Component
 public class StudentDao {
-    public List<Student> getAllStudents(){
+    public List<Student> getAllStudents() {
         return HibernateSessionFactory.getSessionFactory().openSession().createQuery("FROM Student").list();
     }
-    public Student getStudentById(int id){
+
+    public Student getStudentById(int id) {
         return HibernateSessionFactory.getSessionFactory().openSession().get(Student.class, id);
     }
-    public void addStudent(Student student){
+
+    public void addStudent(Student student) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(student);
         transaction.commit();
         session.close();
     }
-    public void deleteStudent(int id){
+
+    public void deleteStudent(int id) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(getStudentById(id));
         transaction.commit();
         session.close();
     }
-    public void updateStudent(Student student){
+
+    public void updateStudent(Student student) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.update(student);

@@ -11,27 +11,31 @@ import java.util.List;
 
 @Component
 public class GroupDao {
-    public List<Student> getAllGroups(){
+    public List<Student> getAllGroups() {
         return HibernateSessionFactory.getSessionFactory().openSession().createQuery("FROM Group").list();
     }
-    public Group getGroupById(int id){
+
+    public Group getGroupById(int id) {
         return HibernateSessionFactory.getSessionFactory().openSession().get(Group.class, id);
     }
-    public void addGroup(Group group){
+
+    public void addGroup(Group group) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.save(group);
         transaction.commit();
         session.close();
     }
-    public void deleteGroup(int id){
+
+    public void deleteGroup(int id) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(getGroupById(id));
         transaction.commit();
         session.close();
     }
-    public void updateGroup(Group group){
+
+    public void updateGroup(Group group) {
         Session session = HibernateSessionFactory.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.update(group);
