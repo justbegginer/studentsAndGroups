@@ -2,6 +2,7 @@ package org.student.site.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 import org.student.site.models.Group;
 import org.student.site.models.HibernateSessionFactory;
@@ -44,10 +45,11 @@ public class StudentDao {
     }
 
     public List<Student> searchByString(String string) {
-        return HibernateSessionFactory
+        Query query = HibernateSessionFactory
                 .getSessionFactory()
                 .openSession()
-                .createQuery("FROM Student student WHERE  student.name = '" + string + "' or student.surname = '" + string + "'")
-                .list();
+                .createQuery("FROM Student student WHERE  student.name = :string or student.surname = :string");
+        query.setParameter("string", string);
+        return query.list();
     }
 }

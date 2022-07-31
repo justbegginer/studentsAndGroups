@@ -45,10 +45,11 @@ public class TutorDao {
     }
 
     public List<Tutor> searchByString(String string) {
-        return HibernateSessionFactory
+        Query query = HibernateSessionFactory
                 .getSessionFactory()
                 .openSession()
-                .createQuery("FROM Tutor WHERE Tutor.name == '" + string + "' or Tutor.surname == '" + string + "' or Tutor.qualification == '"+ string + "'")
-                .list();
+                .createQuery("FROM Tutor tutor WHERE tutor.name =  :string or tutor.surname =  :string  or tutor.qualification =  :string ");
+        query.setParameter("string",string);
+        return query.list();
     }
 }
