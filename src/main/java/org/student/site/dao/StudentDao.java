@@ -3,6 +3,7 @@ package org.student.site.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Component;
+import org.student.site.models.Group;
 import org.student.site.models.HibernateSessionFactory;
 import org.student.site.models.Student;
 
@@ -40,5 +41,13 @@ public class StudentDao {
         session.update(student);
         transaction.commit();
         session.close();
+    }
+
+    public List<Student> searchByString(String string) {
+        return HibernateSessionFactory
+                .getSessionFactory()
+                .openSession()
+                .createQuery("FROM Student student WHERE  student.name = '" + string + "' or student.surname = '" + string + "'")
+                .list();
     }
 }

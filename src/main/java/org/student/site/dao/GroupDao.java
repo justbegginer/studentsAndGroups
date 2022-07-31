@@ -42,4 +42,12 @@ public class GroupDao {
         transaction.commit();
         session.close();
     }
+
+    public List<Group> searchByString(int id) {
+        return HibernateSessionFactory
+                .getSessionFactory()
+                .openSession()
+                .createQuery("FROM Group WHERE id = " + id + " or tutorId = " + id + ";")
+                .list();
+    }
 }
