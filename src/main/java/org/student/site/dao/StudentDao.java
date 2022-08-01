@@ -2,6 +2,7 @@ package org.student.site.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
 import org.student.site.models.Group;
@@ -50,6 +51,14 @@ public class StudentDao {
                 .openSession()
                 .createQuery("FROM Student student WHERE  student.name = :string or student.surname = :string");
         query.setParameter("string", string);
+        return query.list();
+    }
+    public List<Student> findStudentByGroupNumber(int id){
+        Query query = HibernateSessionFactory
+                .getSessionFactory()
+                .openSession()
+                .createQuery("FROM Student student WHERE student.groupNumber = :groupNumber");
+        query.setParameter("groupNumber", id);
         return query.list();
     }
 }
