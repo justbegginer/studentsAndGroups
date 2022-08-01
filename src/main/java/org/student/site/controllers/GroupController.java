@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.student.site.dao.GroupDao;
+import org.student.site.dao.StudentDao;
+import org.student.site.dao.TutorDao;
 import org.student.site.models.Group;
 
 @Controller
@@ -20,9 +22,16 @@ public class GroupController {
     }
 
     @GetMapping("/{id}")
-    public String getGroupById(@PathVariable("id") int id, Model model) {
-        model.addAttribute("group", groupDao.getGroupById(id));
-        return "group/getGroup";
+    public String getGroupById(@PathVariable("id") int id, Model model,
+                               @RequestParam(value = "fullinfo", required = false) boolean fullInfo) {
+        if (!fullInfo) {
+            model.addAttribute("group", groupDao.getGroupById(id));
+            return "group/getGroup";
+        }
+        else{
+            model.addAttribute("completeGroup", groupDao.getCompleteGroupById(id));
+            return "group/getGroupWithAllInfo";
+        }
     }
 
     @GetMapping("/new")
