@@ -4,9 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Component;
-import org.student.site.models.Group;
-import org.student.site.models.HibernateSessionFactory;
-import org.student.site.models.Student;
+import org.student.site.models.*;
 
 import java.util.List;
 
@@ -51,5 +49,11 @@ public class GroupDao {
                 .createQuery("FROM Group WHERE id = :id or tutorId = :id");
         query.setParameter("id", id);
         return query.list();
+    }
+
+    public CompleteGroup getCompleteGroupById(int id) {
+        CompleteGroup completeGroup = new CompleteGroup(getGroupById(id),
+                new TutorDao().findTutorByGroupId(id), new StudentDao().findStudentByGroupNumber(id));
+        return completeGroup;
     }
 }
