@@ -20,18 +20,18 @@ public class MainController {
     @Autowired
     private TutorDao tutorDao;
     @GetMapping("/search")
-    public String search(Model model, @RequestParam("string") String string){
+    public String search(Model model, @RequestParam("word") String word){
         try{
-            int id = Integer.parseInt(string);
+            int id = Integer.parseInt(word);
             model.addAttribute("groups", groupDao.getGroupById(id));
             model.addAttribute("students", studentDao.getStudentById(id));
             model.addAttribute("tutors", tutorDao.getTutorById(id));
-            model.addAttribute("string", id);
+            model.addAttribute("word", id);
         }
         catch (NumberFormatException exception){
-            model.addAttribute("students", studentDao.searchByString(string));
-            model.addAttribute("tutors", tutorDao.searchByString(string));
-            model.addAttribute("string", string);
+            model.addAttribute("students", studentDao.searchByString(word));
+            model.addAttribute("tutors", tutorDao.searchByString(word));
+            model.addAttribute("word", word);
         }
         return "search";
     }
