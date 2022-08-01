@@ -52,4 +52,10 @@ public class TutorDao {
         query.setParameter("string",string);
         return query.list();
     }
+    public Tutor findTutorByGroupId(int id){
+        GroupDao groupDao = new GroupDao();
+        Group group = groupDao.getGroupById(id);
+        int tutorId = group.getTutorId();
+        return HibernateSessionFactory.getSessionFactory().openSession().get(Tutor.class, tutorId);
+    }
 }
