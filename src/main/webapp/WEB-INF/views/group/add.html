@@ -6,9 +6,11 @@
 </head>
 <body>
 <form th:method="POST" th:action="@{/groups}" th:object="${group}">
-  <label for="tutorId"> Write tutor ID</label>
+    <label for="tutorId"> Write tutor ID</label>
     <input type="text" id="tutorId" th:field="*{tutorId}"/>
-  <input type="submit" value="ADD">
+    <input type="submit" value="ADD">
+    <div style="color: darkred" th:if="${#fields.hasErrors('tutorId')}" th:errors="${group.tutorId}"></div>
+
 </form>
 </body>
 </html>
