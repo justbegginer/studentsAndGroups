@@ -9,6 +9,7 @@
     <label for="tutorId" >Write new tutor ID</label>
     <input type="text" id="tutorId" th:field="*{tutorId}"/>
     <input type="submit" value="UPDATE">
+    <div style="color: darkred" th:if="${#fields.hasErrors('tutorId')}" th:errors="${group.tutorId}"></div>
 </form>
 </body>
 </html>
