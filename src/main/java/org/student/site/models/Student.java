@@ -3,6 +3,8 @@ package org.student.site.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import javax.validation.constraints.*;
+
 @Entity
 @Table(name = "student")
 @Getter
@@ -15,7 +17,13 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotEmpty(message = "student name should not be empty")
+    @Size(min = 2, max = 30, message = "student name should be between 2 and 30")
     private String name;
+    @NotEmpty(message = "student surname should not be empty")
+    @Size(min = 2, max = 30, message = "student surname should be between 2 and 30")
     private String surname;
+    @NotNull(message = "student groupNumber should not be empty")
+    @Min(value = 1, message = "student groupNumber should be greater than zero")
     private int groupNumber;
 }
