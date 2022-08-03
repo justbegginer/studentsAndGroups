@@ -3,11 +3,14 @@ package org.student.site.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.student.site.dao.GroupDao;
 import org.student.site.dao.StudentDao;
 import org.student.site.dao.TutorDao;
 import org.student.site.models.Group;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/groups")
@@ -41,7 +44,11 @@ public class GroupController {
     }
 
     @PostMapping()
-    public String addNewGroupToDB(@ModelAttribute("group") Group group) {
+    public String addNewGroupToDB(@ModelAttribute("group") @Valid Group group,
+                                  BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "group/add";
+        }
         groupDao.addGroup(group);
         return "redirect:/groups";
     }
@@ -65,7 +72,11 @@ public class GroupController {
     }
 
     @PatchMapping("{id}")
-    public String updateGroup(@ModelAttribute("group") Group group, Model model) {
+    public String updateGroup(@ModelAttribute("group") @Valid Group group,
+                              BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()){
+            return "group/update";
+        }
         groupDao.updateGroup(group);
         model.addAttribute("groups", groupDao.getAllGroups());
         return "group/all";

@@ -3,9 +3,13 @@ package org.student.site.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.student.site.dao.StudentDao;
 import org.student.site.models.Student;
+
+import javax.validation.Valid;
+
 
 @Controller
 @RequestMapping("/students")
@@ -32,7 +36,11 @@ public class StudentController {
     }
 
     @PostMapping()
-    public String addNewStudentToDB(@ModelAttribute("student") Student student) {
+    public String addNewStudentToDB(@ModelAttribute("student") @Valid Student student,
+                                    BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "student/add";
+        }
         studentDao.addStudent(student);
         return "redirect:/students";
     }
@@ -56,7 +64,11 @@ public class StudentController {
     }
 
     @PatchMapping("{id}")
-    public String updateGroup(@ModelAttribute("student") Student student, Model model) {
+    public String updateGroup(@ModelAttribute("student")@Valid Student student,
+                              BindingResult bindingResult,Model model) {
+        if (bindingResult.hasErrors()){
+            return "student/update";
+        }
         studentDao.updateStudent(student);
         model.addAttribute("students", studentDao.getAllStudents());
         return "student/all";
