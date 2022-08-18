@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        input{
+            color: yellow;
+        }
+        input:hover{
+            color: orange;
+        }
+    </style>
 </head>
 <body>
 <form th:method="PATCH" th:action="@{/tutors/{id}(id=${tutor.id})}" th:object="${tutor}">
@@ -15,7 +23,7 @@
     <input type="submit" value="UPDATE">
     <div style="color: darkred" th:if="${#fields.hasErrors('name')}" th:errors="${tutor.name}"></div>
     <div style="color: darkred" th:if="${#fields.hasErrors('surname')}" th:errors="${tutor.surname}"></div>
-    <div style="color: darkred" th:if="${#fields.hasErrors('qualification')}" th:errors="${tutor.qualification}"></div>
+    <div style="color: darkred" th:if="${#fields.hasErrors('qualification')}" th:errors="${tutor.qualification}"></div>f
 </form>
 </body>
 </html>

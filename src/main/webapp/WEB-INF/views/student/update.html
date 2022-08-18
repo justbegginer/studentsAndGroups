@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        input{
+            color: yellow;
+        }
+        input:hover{
+            color: orange;
+        }
+    </style>
 </head>
 <body>
 <form th:method="PATCH" th:action="@{/students/{id}(id=${student.id})}" th:object="${student}">

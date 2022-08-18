@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        input{
+            color: red;
+        }
+        input:hover{
+            color: darkred;
+        }
+    </style>
 </head>
 <body>
 <center>
@@ -10,7 +18,7 @@
         <h1 style="color:orangered"> Do you really want to delete this group?</h1>
         <h2 th:text="'Group number '+${group.id}"></h2>
         <h2 th:text="'Tutor of this group '+${group.tutorId}"></h2>
-        <input style="color:orangered" type="submit" value="DELETE">
+        <input type="submit" value="DELETE">
     </form>
 </center>
 </body>
